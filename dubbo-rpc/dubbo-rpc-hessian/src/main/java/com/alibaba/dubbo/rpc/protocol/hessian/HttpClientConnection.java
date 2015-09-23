@@ -85,4 +85,8 @@ public class HttpClientConnection implements HessianConnection {
     public void destroy() throws IOException {
     }
 
+	public String getContentEncoding() {
+		return null;
+	}
+
 }

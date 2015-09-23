@@ -1,26 +1,20 @@
-/*
- * Copyright 1999-2011 Alibaba Group.
- *  
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *  
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.alibaba.dubbo.container.jetty;
 
-import org.mortbay.jetty.Handler;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.nio.SelectChannelConnector;
-import org.mortbay.jetty.servlet.FilterHolder;
-import org.mortbay.jetty.servlet.ServletHandler;
-import org.mortbay.jetty.servlet.ServletHolder;
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.FilterHolder;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+
+//import org.mortbay.jetty.Handler;
+//import org.mortbay.jetty.Server;
+//import org.mortbay.jetty.nio.SelectChannelConnector;
+//import org.mortbay.jetty.servlet.FilterHolder;
+//import org.mortbay.jetty.servlet.ServletHandler;
+//import org.mortbay.jetty.servlet.ServletHolder;
 
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
@@ -47,7 +41,9 @@ public class JettyContainer implements Container {
 
     public static final int DEFAULT_JETTY_PORT = 8080;
 
-    SelectChannelConnector connector;
+    //SelectChannelConnector connector;
+
+	private Server server;
 
     public void start() {
         String serverPort = ConfigUtils.getProperty(JETTY_PORT);
@@ -57,25 +53,36 @@ public class JettyContainer implements Container {
         } else {
             port = Integer.parseInt(serverPort);
         }
-        connector = new SelectChannelConnector();
-        connector.setPort(port);
-        ServletHandler handler = new ServletHandler();
+//        connector = new SelectChannelConnector();
+//        connector.setPort(port);
+        //
+        ServletContextHandler context = new ServletContextHandler(  
+                ServletContextHandler.SESSIONS);  
+        context.setContextPath("/");  
         
         String resources = ConfigUtils.getProperty(JETTY_DIRECTORY);
         if (resources != null && resources.length() > 0) {
-            FilterHolder resourceHolder = handler.addFilterWithMapping(ResourceFilter.class, "/*", Handler.DEFAULT);
+            FilterHolder resourceHolder =new FilterHolder(ResourceFilter.class);
+            
+            //, "/*", Handler.DEFAULT);
             resourceHolder.setInitParameter("resources", resources);
+            
+            context.addFilter(resourceHolder,"/*",EnumSet.allOf(DispatcherType.class));  
+            
         }
+       
         
-        ServletHolder pageHolder = handler.addServletWithMapping(PageServlet.class, "/*");
+        ServletHolder pageHolder = new ServletHolder(PageServlet.class);
         pageHolder.setInitParameter("pages", ConfigUtils.getProperty(JETTY_PAGES));
         pageHolder.setInitOrder(2);
+        context.addServlet(pageHolder, "/*");
         
-        Server server = new Server();
-        server.addConnector(connector);
-        server.addHandler(handler);
+        server = new Server(port);
+        server.setHandler(context);  
+        
         try {
             server.start();
+            server.join();
         } catch (Exception e) {
             throw new IllegalStateException("Failed to start jetty server on " + NetUtils.getLocalHost() + ":" + port + ", cause: " + e.getMessage(), e);
         }
@@ -83,9 +90,9 @@ public class JettyContainer implements Container {
 
     public void stop() {
         try {
-            if (connector != null) {
-                connector.close();
-                connector = null;
+            if (server != null) {
+            	server.destroy();
+            	server = null;
             }
         } catch (Throwable e) {
             logger.error(e.getMessage(), e);

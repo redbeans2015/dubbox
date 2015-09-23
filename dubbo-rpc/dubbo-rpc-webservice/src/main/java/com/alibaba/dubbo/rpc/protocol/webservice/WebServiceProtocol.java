@@ -61,7 +61,7 @@ public class WebServiceProtocol extends AbstractProxyProtocol {
     
     private final ExtensionManagerBus bus = new ExtensionManagerBus();
 
-    private final HTTPTransportFactory transportFactory = new HTTPTransportFactory(bus);
+    private final HTTPTransportFactory transportFactory = new HTTPTransportFactory();
 	
     private HttpBinder httpBinder;
     
@@ -117,7 +117,7 @@ public class WebServiceProtocol extends AbstractProxyProtocol {
     	serverFactoryBean.create();
         return new Runnable() {
             public void run() {
-            	serverFactoryBean.destroy();
+            	//serverFactoryBean.destroy();
             }
         };
     }
