@@ -78,7 +78,7 @@
 	<properties>
 		<!-- Common libs -->
 		<!-- 3.2.9.RELEASE/3.2.15.RELEASE/4.1.8.RELEASE -->
-		<spring.bom.version>4.1.8.RELEASE</spring.bom.version>
+		<spring.bom.version>3.2.9.RELEASE</spring.bom.version>
 		<!-- 3.15.0-GA/3.20.0-GA -->
 		<javassist_version>3.20.0-GA</javassist_version>
 		<!-- 3.7.0.Final/3.10.4.Final -->
@@ -117,7 +117,8 @@
 		<servlet_version>3.1.0</servlet_version>
 		<!-- jetty -->
 		<!-- <jetty_version>6.1.26</jetty_version> -->
-		<jetty9.version>9.2.12.v20150709</jetty9.version>
+		<!-- 9.2.13.v20150730/9.3.5.v20151012 -->
+		<jetty9.version>9.3.5.v20151012</jetty9.version>
 		<!-- -->
 		<validation_version>1.0.0.GA</validation_version>
 		<!-- -->
@@ -130,7 +131,7 @@
 		<!-- 2.2/3.1 -->
 		<cglib_version>3.1</cglib_version>
 		<!-- 3.0.8/3.0.14/3.1.6/3.2.4 -->
-		<webx_version>3.0.14</webx_version>
+		<webx_version>3.0.8</webx_version>
 		<!-- 2.6.1 -->
 		<jackson_version>2.6.2</jackson_version>
 		<commons_pool_version>1.6</commons_pool_version>
