@@ -77,13 +77,13 @@
 	</profiles>
 	<properties>
 		<!-- Common libs -->
-		<!-- 3.2.9.RELEASE/3.2.14.RELEASE/4.1.7.RELEASE -->
-		<spring.bom.version>3.2.14.RELEASE</spring.bom.version>
+		<!-- 3.2.9.RELEASE/3.2.15.RELEASE/4.1.8.RELEASE -->
+		<spring.bom.version>4.1.8.RELEASE</spring.bom.version>
 		<!-- 3.15.0-GA/3.20.0-GA -->
 		<javassist_version>3.20.0-GA</javassist_version>
 		<!-- 3.7.0.Final/3.10.4.Final -->
 		<netty_version>3.10.4.Final</netty_version>
-		<netty4.version>4.0.31.Final</netty4.version>
+		<netty4.version>4.0.32.Final</netty4.version>
 		<!-- 1.1.7/2.0.9 -->
 		<mina_version>1.1.7</mina_version>
 		<!-- 2.1.4/2.3.21 -->
@@ -129,8 +129,8 @@
 		<guice_version>3.0</guice_version>
 		<!-- 2.2/3.1 -->
 		<cglib_version>3.1</cglib_version>
-		<!-- 3.0.8/3.2.4/3.1.6/3.0.14 -->
-		<webx_version>3.0.8</webx_version>
+		<!-- 3.0.8/3.0.14/3.1.6/3.2.4 -->
+		<webx_version>3.0.14</webx_version>
 		<!-- 2.6.1 -->
 		<jackson_version>2.6.2</jackson_version>
 		<commons_pool_version>1.6</commons_pool_version>
@@ -446,6 +446,17 @@
 				<artifactId>commons-pool</artifactId>
 				<version>${commons_pool_version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>2.4.2</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.tomcat.embed</groupId>
 				<artifactId>tomcat-embed-core</artifactId>
