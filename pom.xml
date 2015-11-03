@@ -131,7 +131,7 @@
 		<!-- 2.2/3.1 -->
 		<cglib_version>3.1</cglib_version>
 		<!-- 3.0.8/3.0.14/3.1.6/3.2.4 -->
-		<webx_version>3.0.8</webx_version>
+		<webx_version>3.0.14</webx_version>
 		<!-- 2.6.1 -->
 		<jackson_version>2.6.2</jackson_version>
 		<commons_pool_version>1.6</commons_pool_version>

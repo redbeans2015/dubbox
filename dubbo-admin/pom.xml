@@ -33,6 +33,12 @@
 		<dependency>
 			<groupId>com.alibaba.citrus</groupId>
 			<artifactId>citrus-webx-all</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-asm</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
