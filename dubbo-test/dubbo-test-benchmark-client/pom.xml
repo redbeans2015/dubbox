@@ -184,6 +184,7 @@
             </resource>
         </resources>
         <plugins>
+        	<!--  
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -207,6 +208,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
