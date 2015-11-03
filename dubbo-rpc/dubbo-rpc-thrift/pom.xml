@@ -58,11 +58,8 @@
                     <artifactId>httpcore</artifactId>
                 </exclusion>
             </exclusions>
+            <scope>provided</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo-config-spring</artifactId>

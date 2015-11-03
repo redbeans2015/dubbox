@@ -42,6 +42,7 @@
 		<dependency>
 		    <groupId>com.caucho</groupId>
 		    <artifactId>hessian</artifactId>
+		    <scope>provided</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>

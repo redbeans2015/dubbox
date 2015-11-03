@@ -37,6 +37,7 @@
 		<dependency>
 			<groupId>org.glassfish.grizzly</groupId>
 			<artifactId>grizzly-core</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
