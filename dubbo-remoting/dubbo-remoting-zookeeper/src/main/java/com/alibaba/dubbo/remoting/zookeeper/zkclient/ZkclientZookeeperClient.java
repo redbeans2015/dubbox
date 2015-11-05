@@ -23,10 +23,9 @@ public class ZkclientZookeeperClient extends AbstractZookeeperClient<IZkChildLis
 
 	public ZkclientZookeeperClient(URL url) {
 		super(url);
-		client = new ZkClient(
-                url.getBackupAddress(),
-                url.getParameter(Constants.SESSION_TIMEOUT_KEY, Constants.DEFAULT_SESSION_TIMEOUT),
-                url.getParameter(Constants.TIMEOUT_KEY, Constants.DEFAULT_REGISTRY_CONNECT_TIMEOUT));
+		client = new ZkClient(url.getBackupAddress(),
+				url.getParameter(Constants.SESSION_TIMEOUT_KEY, Constants.DEFAULT_SESSION_TIMEOUT),
+				url.getParameter(Constants.TIMEOUT_KEY, Constants.DEFAULT_REGISTRY_CONNECT_TIMEOUT));
 		client.subscribeStateChanges(new IZkStateListener() {
 			public void handleStateChanged(KeeperState state) throws Exception {
 				ZkclientZookeeperClient.this.state = state;
@@ -36,9 +35,18 @@ public class ZkclientZookeeperClient extends AbstractZookeeperClient<IZkChildLis
 					stateChanged(StateListener.CONNECTED);
 				}
 			}
+
 			public void handleNewSession() throws Exception {
 				stateChanged(StateListener.RECONNECTED);
 			}
+			/**
+			 * 0.6
+			 */
+			public void handleSessionEstablishmentError(Throwable arg0) throws Exception {
+				// TODO Auto-generated method stub
+
+			}
+
 		});
 	}
 
@@ -66,9 +74,9 @@ public class ZkclientZookeeperClient extends AbstractZookeeperClient<IZkChildLis
 	public List<String> getChildren(String path) {
 		try {
 			return client.getChildren(path);
-        } catch (ZkNoNodeException e) {
-            return null;
-        }
+		} catch (ZkNoNodeException e) {
+			return null;
+		}
 	}
 
 	public boolean isConnected() {
@@ -81,8 +89,7 @@ public class ZkclientZookeeperClient extends AbstractZookeeperClient<IZkChildLis
 
 	public IZkChildListener createTargetChildListener(String path, final ChildListener listener) {
 		return new IZkChildListener() {
-			public void handleChildChange(String parentPath, List<String> currentChilds)
-					throws Exception {
+			public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
 				listener.childChanged(parentPath, currentChilds);
 			}
 		};
@@ -93,7 +100,7 @@ public class ZkclientZookeeperClient extends AbstractZookeeperClient<IZkChildLis
 	}
 
 	public void removeTargetChildListener(String path, IZkChildListener listener) {
-		client.unsubscribeChildChanges(path,  listener);
+		client.unsubscribeChildChanges(path, listener);
 	}
 
 }
