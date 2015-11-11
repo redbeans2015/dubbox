@@ -133,7 +133,7 @@
 		<!-- 3.0.8/3.0.14/3.1.6/3.2.4 -->
 		<webx_version>3.0.14</webx_version>
 		<!-- 2.6.1 -->
-		<jackson_version>2.6.2</jackson_version>
+		<jackson_version>2.6.3</jackson_version>
 		<commons_pool_version>1.6</commons_pool_version>
 		<tomcat_embed_version>8.0.24</tomcat_embed_version>
 		<!-- Log libs -->
@@ -243,13 +243,8 @@
 				<artifactId>zookeeper</artifactId>
 				<version>${zookeeper_version}</version>
 			</dependency>
-			<!--  
-			<dependency>
-				<groupId>com.github.sgroschupf</groupId>
-				<artifactId>zkclient</artifactId>
-				<version>${zkclient_version}</version>
-			</dependency>
-			-->
+			<!-- <dependency> <groupId>com.github.sgroschupf</groupId> <artifactId>zkclient</artifactId> 
+				<version>${zkclient_version}</version> </dependency> -->
 			<!-- zkclient -->
 			<dependency>
 				<groupId>com.101tec</groupId>
@@ -385,6 +380,22 @@
 				<groupId>com.fasterxml.jackson.jaxrs</groupId>
 				<artifactId>jackson-jaxrs-json-provider</artifactId>
 				<version>${jackson_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.jaxrs</groupId>
+				<artifactId>jackson-jaxrs-base</artifactId>
+				<version>${jackson_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.module</groupId>
+				<artifactId>jackson-module-jaxb-annotations</artifactId>
+				<version>${jackson_version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.2.11</version>
 			</dependency>
 			<!-- Log libs -->
 			<dependency>
